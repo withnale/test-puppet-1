@@ -1,0 +1,24 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  # Lookup the host specifically if desired - really only required for
+  # non elastic hosts
+  - "nodes/%{::fqdn}"
+  # Filter on mendeley_instance which should be aligned with the
+  # AWS Name tag. Useful for dropwizard => instance mapping for example
+  - "instances/%{::mendeley_instance}"
+
+  # Data for a given environment overrides defaults
+  - "env.%{::environment}/role.%{role}"
+  - "env.%{::environment}/mod.%{module_name}"
+  - "env.%{::environment}/common"
+
+  # Common to all environments
+  - "roles/%{role}"
+  - "modules/%{module_name}"
+  - common
+
+:yaml:
+   :datadir: /tmp/puppet-hiera

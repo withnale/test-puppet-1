@@ -1,0 +1,6 @@
+---
+
+classes:
+  - themasterchef::apt
+  - themasterchef::base_packages
+
